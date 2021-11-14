@@ -25,6 +25,10 @@ group :development, :test do
   gem 'rspec-rails', '>= 4.0' # https://github.com/rspec/rspec-rails
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  # Debug HTML
+  gem 'launchy'
+  # WSL support
+  gem 'capybara-wsl'
   # State of the art fixtures
   gem 'factory_bot_rails', '~> 6.1' # https://github.com/thoughtbot/factory_bot_rails
 end
