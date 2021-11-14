@@ -16,4 +16,11 @@ describe "New author page", type: :feature do
     page.fill_in 'author[homepage]', with: 'http://wikipedia.org/Alan_Turing'
     page.find('input[type="submit"]').click
   end
+  it "should display an error message if an invalid author entry is created" do
+    page.fill_in 'author[first_name]', with: 'Foo'
+    page.fill_in 'author[homepage]', with: 'http://foo.bar'
+    page.find('input[type="submit"]').click
+    expect(page).to have_text("/Error/")
+    expect(page).to have_text('/empty last name/')
+  end
 end
