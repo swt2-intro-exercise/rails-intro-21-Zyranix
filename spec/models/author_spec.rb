@@ -12,4 +12,12 @@ describe "Author page", type: :model do
     expect(author.homepage).to eq(my_homepage)
     expect(author.name).to eq("#{my_first_name} #{my_last_name}")
   end
+  it "should fail on creating an author without a last name" do
+    author = Author.new(first_name: 'Foo')
+    expect(author).to_not be_valid
+  end
+  it "should fail on creating an author without a first name" do
+    author = Author.new(last_name: 'Bar')
+    expect(author).to_not be_valid
+  end
 end
