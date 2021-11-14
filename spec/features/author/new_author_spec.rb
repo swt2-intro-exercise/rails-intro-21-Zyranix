@@ -20,7 +20,7 @@ describe "New author page", type: :feature do
     page.fill_in 'author[first_name]', with: 'Foo'
     page.fill_in 'author[homepage]', with: 'http://foo.bar'
     page.find('input[type="submit"]').click
-    expect(page).to have_text("/Error/")
-    expect(page).to have_text('/empty last name/')
+    expect(page).to have_text(/error/i)
+    expect(page).to have_text(/Last name can\'t be blank/)
   end
 end
