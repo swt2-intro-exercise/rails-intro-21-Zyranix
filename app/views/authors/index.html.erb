@@ -13,10 +13,13 @@
       <td><%= author.first_name %></td>
       <td><%= author.last_name %></td>
       <td><%= link_to author.homepage, author.homepage %></td>
-      <td><%= link_to 'Show', author_path(author) %></td>
-      <td><%= link_to 'Edit', edit_author_path(author) %></td>
+      <td><%= link_to "Show", author_path(author) %></td>
+      <td><%= link_to "Edit", edit_author_path(author) %></td>
+      <td><%= link_to "Delete", author_path(author),
+                      method: :delete,
+                      data: { confirm: "Do you really want to delete '#{author.name}'?" } %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to 'Add author', new_author_path %>
+<%= link_to "Add author", new_author_path %>

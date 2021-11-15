@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Author page", type: :model do
+describe "Author", type: :model do
   it "should create an author named 'Alan Turing' and a corresponding homepage" do
     # https://guides.rubyonrails.org/routing.html#path-and-url-helpers
     my_first_name = 'Alan'

@@ -29,4 +29,14 @@ describe "Show all authors page", type: :feature do
   it "should have a link to add new authors" do
     expect(page).to have_link 'Add author', href: new_author_path
   end
+  it "should have a link to edit an author" do
+    within 'table' do
+      expect(page).to have_link 'Edit', href: edit_author_path(@my_author)
+    end
+  end
+  it "should have a link to delete an author" do
+    within 'table' do
+      expect(page).to have_selector(:css, "a[data-method=delete][href='#{author_path(@my_author)}']")
+    end
+  end
 end
