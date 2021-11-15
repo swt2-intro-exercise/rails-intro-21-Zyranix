@@ -27,4 +27,10 @@ RSpec.describe Paper, type: :model do
     paper = Paper.new(title: 'Bar', venue: 'Foo')
     expect(paper).to_not be_valid
   end
+  it "should fail on creating a paper with non-integer year" do
+    paper = Paper.new(title: 'Bar', venue: 'Foo', year: '56.6')
+    expect(paper).to_not be_valid
+    paper = Paper.new(title: 'Bar', venue: 'Foo', year: 'Döner')
+    expect(paper).to_not be_valid
+  end
 end
