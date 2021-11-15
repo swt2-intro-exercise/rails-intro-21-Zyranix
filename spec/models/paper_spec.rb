@@ -33,4 +33,9 @@ RSpec.describe Paper, type: :model do
     paper = Paper.new(title: 'Bar', venue: 'Foo', year: 'Döner')
     expect(paper).to_not be_valid
   end
+  it "should be able to save authors it features" do
+    paper = FactoryBot.create :paper
+    expect(paper.authors).to eq([])
+  end
+  
 end
