@@ -1,2 +1,5 @@
 class Paper < ApplicationRecord
+    validates :title, presence: true, length: {minimum: 3}
+    validates :venue, presence: true, length: {minimum: 3}
+    validates :year, presence: true
 end
