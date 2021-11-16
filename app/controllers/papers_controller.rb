@@ -4,6 +4,7 @@ class PapersController < ApplicationController
   # GET /papers
   def index
     @papers = Paper.all
+    @papers = Paper.created_in(params[:year]) if params[:year].present?
   end
 
   # GET /papers/1
@@ -26,7 +27,7 @@ class PapersController < ApplicationController
     @paper = Paper.new(paper_params)
 
     if @paper.save
-      redirect_to @paper, notice: 'Paper was successfully created.'
+      redirect_to @paper, notice: "Paper was successfully created."
     else
       render :new
     end
@@ -35,7 +36,7 @@ class PapersController < ApplicationController
   # PATCH/PUT /papers/1
   def update
     if @paper.update(paper_params)
-      redirect_to @paper, notice: 'Paper was successfully updated.'
+      redirect_to @paper, notice: "Paper was successfully updated."
     else
       render :edit
     end
@@ -44,17 +45,18 @@ class PapersController < ApplicationController
   # DELETE /papers/1
   def destroy
     @paper.destroy
-    redirect_to papers_url, notice: 'Paper was successfully destroyed.'
+    redirect_to papers_url, notice: "Paper was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_paper
-      @paper = Paper.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def paper_params
-      params.require(:paper).permit(:title, :venue, :year, :author_ids => [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_paper
+    @paper = Paper.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def paper_params
+    params.require(:paper).permit(:title, :venue, :year, :author_ids => [])
+  end
 end

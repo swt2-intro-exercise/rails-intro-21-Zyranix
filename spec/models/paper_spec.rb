@@ -37,5 +37,12 @@ RSpec.describe Paper, type: :model do
     paper = FactoryBot.create :paper
     expect(paper.authors).to eq([])
   end
+  it "should be able to only show papers of a certain year" do
+    paper1 = FactoryBot.create :paper
+    paper2 = Paper.new(title: 'Bar', venue: 'Foo', year: '3000')
+    filtered_paper_list = Paper.created_in(paper1.year)
+    expect(filtered_paper_list.length).to eq(1)
+    expect(filtered_paper_list[0].title).to eq(paper1.title)
+  end
   
 end
