@@ -27,6 +27,8 @@ group :development, :test do
   gem 'capybara', '>= 2.15'
   # State of the art fixtures
   gem 'factory_bot_rails', '~> 6.1' # https://github.com/thoughtbot/factory_bot_rails
+  # formatting
+  gem 'rufo'
 end
 
 group :development do
