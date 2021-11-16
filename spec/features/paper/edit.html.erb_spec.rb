@@ -1,24 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "papers/edit", type: :view do
-  before(:each) do
-    @paper = assign(:paper, Paper.create!(
-      title: "MyString",
-      venue: "MyString",
-      year: 1
-    ))
+RSpec.describe "papers/edit", type: :feature do
+  before {
+    @my_paper = FactoryBot.create :paper
+    @my_author = FactoryBot.create :author
+    @my_paper.authors.push(@my_author)
+    visit edit_paper_path(@my_paper.id)
+  }
+  it "should exist at 'edit_author_path' and render without error" do
   end
-
-  it "renders the edit paper form" do
-    render
-
-    assert_select "form[action=?][method=?]", paper_path(@paper), "post" do
-
-      assert_select "input[name=?]", "paper[title]"
-
-      assert_select "input[name=?]", "paper[venue]"
-
-      assert_select "input[name=?]", "paper[year]"
-    end
+  it "should feature the option to link multiple authors" do
+    expect(page).to have_css('select[multiple]')
+    expect(page).to have_text('Authors')
   end
 end

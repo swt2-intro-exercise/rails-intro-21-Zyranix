@@ -17,9 +17,15 @@
 
 <p>
   <strong>Authors:</strong>
-  <% @paper.authors.each do |author| %>
-    <%= author.name %>
+  <% if @paper.authors.empty? %>
+  <i> <%= "Unknown"%> </i>
+  <% else %>
+  <ul>
+    <% @paper.authors.each do |author| %>
+      <li><%= link_to author.name, author_path(author) %></li>
+    <% end %>
   <% end %>
+  </ul>
 </p>
 
 <%= link_to "Edit", edit_paper_path(@paper) %> |
